@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!-- 配置mysql 驱动jar包路径.用了绝对路径 -->
+    <classPathEntry location="D:/server/maven/repository/mysql/mysql-connector-java/5.1.32/mysql-connector-java-5.1.32.jar" />
+
+    <!-- 防止生成的代码中有很多注释，加入下面的配置控制 -->
+    <context id="pinyougou_mysql_tables" targetRuntime="MyBatis3" defaultModelType="flat">
+        <!-- 生成的 Java 文件的编码 -->
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <!-- 格式化 Java 代码 -->
+        <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+        <!-- 格式化 XML 代码 -->
+        <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+
+        <commentGenerator type="com.mybatis.generator.CommentGenerator">
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true" />
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+
+        <!-- 数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/pinyougoudb?useUnicode=true&amp;characterEncoding=UTF-8"
+                        userId="root"
+                        password="root">
+            <property name="useInformationSchema" value="true" />
+        </jdbcConnection>
+
+        <!-- 默认 false，把 JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true 时把 JDBC DECIMAL 和
+            NUMERIC 类型解析为 java.math.BigDecimal -->
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!--
+           targetPackage：指定 POJO 类生成后所在的包的位置
+           targetProject:指定生成 POJO 类的位置
+        -->
+        <javaModelGenerator targetPackage="com.pinyougou.pojo" targetProject="pinyougou-pojo\src\main\java">
+            <!-- enableSubPackages:是否让 schema 作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property name="trimStrings" value="false"/>
+        </javaModelGenerator>
+
+        <!-- sql mapper 映射配置文件 -->
+        <!--
+           targetPackage：指定生成的 SQL 映射文件所在的位置
+       -->
+        <sqlMapGenerator targetPackage="mapper-config"
+                         targetProject="pinyougou-sellergoods-service\src\main\resources/">
+            <!-- enableSubPackages:是否让 schema 作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+
+        <!-- mybatis3中的mapper接口 -->
+        <!--
+            targetPackage：指定 mapper 接口生成包的位置
+        -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="mapper"
+                             targetProject="pinyougou-sellergoods-interface\src\main\java">
+            <!-- enableSubPackages:是否让 schema 作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+
+        <!-- 数据表进行生成操作
+            schema:相当于库名;
+            tableName:指定表名;
+            domainObjectName:指定生成的 POJO 的类名
+         -->
+        <table tableName="tb_address" domainObjectName="TbAddress" />
+        <table tableName="tb_areas" domainObjectName="TbAreas" />
+        <table tableName="tb_brand" domainObjectName="TbBrand" />
+        <table tableName="tb_cities" domainObjectName="TbCities" />
+        <table tableName="tb_content" domainObjectName="TbContent" />
+        <table tableName="tb_content_category" domainObjectName="TbContentCategory" />
+        <table tableName="tb_freight_template" domainObjectName="TbFreightTemplate" />
+        <table tableName="tb_goods" domainObjectName="TbGoods" />
+        <table tableName="tb_goods_desc" domainObjectName="TbGoodsDesc" />
+        <table tableName="tb_item" domainObjectName="TbItem" />
+        <table tableName="tb_item_cat" domainObjectName="TbItemCat" />
+        <table tableName="tb_order" domainObjectName="TbOrder" />
+        <table tableName="tb_order_item" domainObjectName="TbOrderItem" />
+        <table tableName="tb_pay_log" domainObjectName="TbPayLog" />
+        <table tableName="tb_seckill_goods" domainObjectName="TbSeckillGoods" />
+        <table tableName="tb_seckill_order" domainObjectName="TbSeckillOrder" />
+        <table tableName="tb_seller" domainObjectName="TbSeller" />
+        <table tableName="tb_specification" domainObjectName="TbSpecification" />
+        <table tableName="tb_specification_option" domainObjectName="TbSpecificationOption" />
+        <table tableName="tb_type_template" domainObjectName="TbTypeTemplate" />
+        <table tableName="tb_user" domainObjectName="TbUser" />
+
+    </context>
+</generatorConfiguration>
